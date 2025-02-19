@@ -4,34 +4,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indian Culture Information Management System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling with Video Background */
         body {
             font-family: 'Poppins', sans-serif;
-            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden; /* Ensure no scroll bars */
+            min-height: 100vh;
+            color: white;
+            overflow: hidden;
+            position: relative;
         }
 
-        video {
-            position: fixed;
+        /* Video Background */
+        #video-background {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1; /* Place the video behind other content */
+            z-index: -1;
         }
 
+        /* Container Styling */
         .container {
-            background: rgba(0, 0, 0, 0.7); /* Transparent black background */
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
             padding: 40px 30px;
             width: 100%;
@@ -39,44 +48,37 @@
             text-align: center;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
+            z-index: 1;
         }
 
+        /* Heading Styling */
         h1 {
             margin-bottom: 30px;
             font-weight: 600;
             color: #f1f1f1;
         }
 
+        /* Input Container Styling */
         .input-container {
-            position: relative;
             margin-bottom: 20px;
         }
 
         .input-container input {
             width: 100%;
-            padding: 15px 20px;
+            padding: 15px;
             border: none;
             border-radius: 30px;
             background: rgba(255, 255, 255, 0.2);
             color: #fff;
             font-size: 14px;
-            transition: background 0.3s ease;
-        }
-
-        .input-container input:focus {
-            background: rgba(255, 255, 255, 0.4);
             outline: none;
         }
 
-        .input-container i {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            color: #ccc;
-            font-size: 18px;
+        .input-container input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
 
+        /* Button Styling */
         button {
             width: 100%;
             padding: 15px;
@@ -94,68 +96,47 @@
             background: linear-gradient(45deg, #ff4757, #ff6b6b);
         }
 
-        .navbar {
-            background: rgba(0, 0, 0, 0.7);
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            padding: 10px 0;
+        /* Link to Registration Page */
+        .register-link {
+            margin-top: 20px;
+            font-size: 14px;
         }
 
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
+        .register-link a {
+            color: #ff6b6b;
             text-decoration: none;
+            font-weight: 600;
         }
 
-        .navbar button {
-            background-color: transparent;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .navbar button:hover {
+        .register-link a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- Background Video -->
-    <video autoplay muted loop>
-        <source src="vdo/vdo2.mp4" type="video/mp4">
+
+    <!-- Video Background -->
+    <video id="video-background" autoplay muted loop>
+        <source src="https://www.pexels.com/download/video/3843433/" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <div class="navbar">
-        <a href="index.jsp">Home</a>
-    </div>
-
+    <!-- Login Form -->
     <div class="container">
         <h1>Login</h1>
-        <form id="loginForm">
+        <form action="LoginServlet" method="post">
             <div class="input-container">
-                <i class="fas fa-user"></i>
-                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="text" name="email" placeholder="Email" required>
             </div>
             <div class="input-container">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" placeholder="Password" required>
             </div>
-            <button type="button" onclick="redirectToHome()">LOGIN</button>
+            <button type="submit">LOGIN</button>
         </form>
+        <div class="register-link">
+            Don't have an account? <a href="register.jsp">Register here</a>
+        </div>
     </div>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script>
-        function redirectToHome() {
-            // Here you can add authentication logic if needed
-            window.location.href = 'home.jsp';
-        }
-    </script>
+
 </body>
 </html>
